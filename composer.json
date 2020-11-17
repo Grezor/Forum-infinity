@@ -1,0 +1,15 @@
+{
+    "name": "geoffrey/forum-poo",
+    "authors": [
+        {
+            "name": "Geoffrey Duplessi",
+            "email": "grezor.gamer@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "router\\": "public/routes/"
+        }
+    },
+    "require": {}
+}
