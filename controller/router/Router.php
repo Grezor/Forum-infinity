@@ -1,7 +1,6 @@
 <?php 
 
-namespace App\Router;
-
+namespace App\router;
 
 class Router {
 
@@ -9,21 +8,50 @@ class Router {
     private $routes = [];
     private $namedRoutes = [];
 
+    /**
+     * 
+     *
+     * @param [type] $url
+     */
     public function __construct($url)
     {
         $this->url = $url;
     }
-
+    /**
+     * 
+     *
+     * @param [type] $path
+     * @param [type] $callable
+     * @param [type] $name
+     * @return void
+     */
     public function get($path, $callable, $name = null)
     {
         return $this->add($path, $callable, $name, 'GET');
     }
-
+    
+    /**
+     * 
+     *
+     * @param [type] $path
+     * @param [type] $callable
+     * @param [type] $name
+     * @return void
+     */
     public function post($path, $callable, $name = null)
     {
         return $this->add($path, $callable, $name, 'POST');
     }
 
+    /**
+     * 
+     *
+     * @param [type] $path
+     * @param [type] $callable
+     * @param [type] $name
+     * @param [type] $method
+     * @return void
+     */
     private function add($path, $callable, $name, $method)
     {
         $route = new Route($path, $callable);
@@ -38,7 +66,11 @@ class Router {
         }
         return $route;
     }
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function run()
     {
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){

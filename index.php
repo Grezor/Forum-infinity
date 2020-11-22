@@ -4,7 +4,12 @@ require 'vendor/autoload.php';
 
 $router = new App\Router\Router($_GET['url']);
 
-$router->get('/', function(){ echo 'home'; });
+// $router->get('/', "home@show");
+// $router->get('/inscription', "auth@show");
+// $router->get('/connexion', 'auth@show');
+// $router->get('/topics', '')
+
+
 $router->get('/posts', function(){ echo 'tous les articles'; });
 $router->get('/posts/:id-slug-', function($id, $slug) use ($router){ echo $router->url('posts.show', ['id' => 1, 'slug' => 'salut-les-gens']);}, 'post.show')->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
 $router->get('/articles/:id', "Post@show");

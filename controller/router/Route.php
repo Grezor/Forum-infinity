@@ -9,12 +9,25 @@ class Route {
     private $matches = [];
     private $params = [];
 
+    /**
+     * 
+     *
+     * @param [type] $path
+     * @param [type] $callable
+     */
     public function __construct($path, $callable)
     {
         $this->path = trim($path, '/');
         $this->callable = $callable;
     }
 
+    /**
+     * 
+     *
+     * @param [type] $param
+     * @param [type] $regex
+     * @return void
+     */
     public function with($param, $regex)
     {
         $this->params[$param] = str_replace('(', '(?:', $regex);
@@ -44,7 +57,11 @@ class Route {
         }
         return '([^/]+)';
     }
-
+    /**
+     * 
+     *
+     * @return void
+     */
     public function call()
     {
         if (is_string($this->callable)) {
@@ -58,7 +75,12 @@ class Route {
             return call_user_func_array($this->callable, $this->matches);
         }
     }
-
+    /**
+     * 
+     *
+     * @param [type] $params
+     * @return void
+     */
     public function getUrl($params)
     {
         $path = $this->path;
