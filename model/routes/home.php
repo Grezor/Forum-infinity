@@ -1,3 +1,3 @@
 <?php
 
-$router->get('/', "home@show");
+$router->get('/', "Home\\Home@show");

@@ -1,7 +1,12 @@
 <?php
 namespace App\Home;
 
-class HomeController {
+use App\Render\PhpRenderTrait;
+
+class HomeController
+{
+
+    use PhpRenderTrait;
 
     public function __construct()
     {
@@ -10,6 +15,6 @@ class HomeController {
     
     public function show()
     {
-        echo "je suis home";
+        $this->render('Home/show', ['username' => 'Jean'], 'front');
     }
 }
