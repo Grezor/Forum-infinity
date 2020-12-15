@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Router;
+use App\Database\DatabaseController;
 
 class Route {
 
@@ -10,8 +11,7 @@ class Route {
     private $params = [];
 
     /**
-     * 
-     *
+     * Constructeur
      * @param [type] $path
      * @param [type] $callable
      */
@@ -23,7 +23,6 @@ class Route {
 
     /**
      * 
-     *
      * @param [type] $param
      * @param [type] $regex
      * @return void
@@ -51,6 +50,11 @@ class Route {
         return true;
     }
 
+    /**
+     * 
+     * @param [type] $match
+     * @return void
+     */
     private function paramMatch($match){
         if (isset($this->params[$match[1]])) {
             return '(' . $this->params[$match[1]] . ')';
@@ -58,7 +62,6 @@ class Route {
         return '([^/]+)';
     }
     /**
-     * 
      *
      * @return void
      */
@@ -69,7 +72,7 @@ class Route {
             $params = explode('@', $this->callable);
             // il va chercher dans le controller
             $controller = "App\\" . $params[0] . "Controller";
-            $controller = new $controller();
+            $controller = new $controller(DatabaseController::getPDO());
             return call_user_func_array([$controller, $params[1]], $this->matches);
         } else {
             return call_user_func_array($this->callable, $this->matches);
@@ -77,7 +80,6 @@ class Route {
     }
     /**
      * 
-     *
      * @param [type] $params
      * @return void
      */
@@ -89,6 +91,4 @@ class Route {
         }
         return $path;
     }
-
-
 }

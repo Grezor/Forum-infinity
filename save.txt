@@ -1,0 +1,23 @@
+
+    public function getUserByNameOrEmail(PDO $db, $username, $password)
+    {
+        // Récupération des champs pour la tables users
+        // ou le nom = $name OU l'email = $email et
+        // prends en qu'un seul
+        $reqSelect = $db->prepare(
+            'SELECT id, username, password, email, connection_at 
+            FROM users
+            WHERE username = :username OR
+                password = :password
+            LIMIT 0, 1');
+    
+        // La fonction bindValue est plus lisible et plus précise
+        $reqSelect->bindValue(':username', $username, PDO::PARAM_STR);
+        $reqSelect->bindValue(':password', $password, PDO::PARAM_STR);
+    
+        // Exécution de la requête
+        $reqSelect->execute();
+    
+        // On retourne le résultat
+        return $reqSelect->fetch();
+    }

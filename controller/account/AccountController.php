@@ -1,31 +1,41 @@
 <?php
+
 namespace App\Account;
 
-use App\Render\PhpRenderTrait;
 use App\Render\RedirectTrait;
+use App\Render\PhpRenderTrait;
+use App\Database\DatabaseController;
+use App\model\users;
+
 
 class AccountController {
-    
+
     use PhpRenderTrait, RedirectTrait;
 
-    public function __construct()
-    {
+    private $db;
+    private $errors = [];
 
+    public function __construct(DatabaseController $db)
+    {
+        $this->db = $db;
     }
 
     public function register()
     {
-        echo "test";
+        return $this->render('Account/register');
     }
 
     public function postRegister()
     {
-
+        $user = new Users($this->db);
+        if (empty($this->username) || empty($this->password)) {
+            $errors[] = 'Tous les champs doivent être remplis';
+        }
     }
 
     public function login()
-    {
-
+    {        
+        return $this->render('Account/login');
     }
 
     public function postLogin()
@@ -33,13 +43,13 @@ class AccountController {
 
     }
 
-    public function checlMail()
+    public function checkMail()
     {
 
     }
 
     public function logout()
     {
-        
+        return $this->render('Account/login');
     }
 }

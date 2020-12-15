@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\router;
+namespace App\Router;
 
 class Router {
 
@@ -10,7 +10,6 @@ class Router {
 
     /**
      * 
-     *
      * @param [type] $url
      */
     public function __construct($url)
@@ -18,8 +17,7 @@ class Router {
         $this->url = $url;
     }
     /**
-     * 
-     *
+     * GET
      * @param [type] $path
      * @param [type] $callable
      * @param [type] $name
@@ -32,7 +30,6 @@ class Router {
     
     /**
      * 
-     *
      * @param [type] $path
      * @param [type] $callable
      * @param [type] $name
@@ -45,7 +42,6 @@ class Router {
 
     /**
      * 
-     *
      * @param [type] $path
      * @param [type] $callable
      * @param [type] $name
@@ -67,8 +63,7 @@ class Router {
         return $route;
     }
     /**
-     * Undocumented function
-     *
+     * 
      * @return void
      */
     public function run()
@@ -84,8 +79,9 @@ class Router {
         }
         throw new RouterException('No matching routes');
     }
-
-    
+    /**
+     * 
+     */
     public function url($name, $params = [])
     {
         if (!isset($this->namedRoutes[$name])) {

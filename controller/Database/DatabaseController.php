@@ -1,23 +1,25 @@
 <?php 
 namespace App\Database;
-
 use PDO;
 
-class DatabaseController {
-
-    private $pdo;
-
-    public function __construct($login, $password, $host, $databaseName)
-    {
-        $this->pdo = new PDO("mysql:dbname=$databaseName;host=$host, $login, $password");
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    }
+class DatabaseController extends PDO {
     
-    public function query($query, $params)
+    private static DatabaseController $pdo;
+    
+    public function __construct(string $dbname, string $host = 'localhost', string $username = 'root' , string $password = '')
     {
-        $req = $$this->pdo->prepare($query);
-        $req->execute($params);
-        return $req->fetch();
+        parent::__construct(
+            "mysql:dbname={$dbname};host={$host}", $username, $password,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
+            ]
+        );
+    }
+
+    public static function getPDO(): DatabaseController
+    {
+        return self::$pdo ??= new DatabaseController('forum2020poo', 'localhost', 'root', '');
     }
 }

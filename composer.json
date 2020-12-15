@@ -3,12 +3,12 @@
     "authors": [
         {
             "name": "Geoffrey Duplessi",
-            "email": "grezor.gamer@gmail.com"
+            "email": "duplessi.geoffrey@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "controller"
+            "App\\": "controller/"
         }
     },
     "require": {}

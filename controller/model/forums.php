@@ -12,9 +12,8 @@ class Forums {
     private $postCount;
     private $updatedAt;
 
-    public function __construct()
-    {
-        
-    }
+
+
+
     
 }
