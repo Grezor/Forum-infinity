@@ -4,8 +4,8 @@ namespace App\Router;
 
 class Router {
 
-    private $url;
-    private $routes = [];
+    private $url; // Contiendra l'URL sur laquelle on souhaite se rendre
+    private $routes = []; // contient la liste des routes
     private $namedRoutes = [];
 
     /**
@@ -18,10 +18,10 @@ class Router {
     }
     
     /**
-     * Methode GET pour le router
-     * @param [type] $path
+     * Methode GET
+     * @param string $path
      * @param [type] $callable
-     * @param [type] $name
+     * @param string $name
      * @return void
      */
     public function get($path, $callable, $name = null)
@@ -30,10 +30,10 @@ class Router {
     }
     
     /**
-     * 
-     * @param [type] $path
-     * @param [type] $callable
-     * @param [type] $name
+     * Methode POST
+     * @param string $path
+     * @param string $callable
+     * @param string $name
      * @return void
      */
     public function post($path, $callable, $name = null)
@@ -42,7 +42,7 @@ class Router {
     }
 
     /**
-     * 
+     * Methode Add
      * @param [type] $path
      * @param [type] $callable
      * @param [type] $name
@@ -51,6 +51,7 @@ class Router {
      */
     private function add($path, $callable, $name, $method)
     {
+        // chemin, puis la function apeler
         $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
         
@@ -69,6 +70,7 @@ class Router {
      */
     public function run()
     {
+        // on recupere la methode server
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
             throw new RouterException('REQUEST_METHOD does not exist');
         }

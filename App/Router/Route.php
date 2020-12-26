@@ -17,7 +17,7 @@ class Route {
      */
     public function __construct($path, $callable)
     {
-        $this->path = trim($path, '/');
+        $this->path = trim($path, '/'); // On retire les / inutils
         $this->callable = $callable;
     }
 
@@ -34,7 +34,8 @@ class Route {
     }
 
     /**
-     * Vérifie si ca match
+     * Permet de capturer l'url avec les paramètre 
+     * get('/posts/:slug-:id') par exemple
      * @param string $url
      * @return void
      */
@@ -71,7 +72,7 @@ class Route {
             // prend les parametres
             $params = explode('@', $this->callable);
             // il va chercher dans le dossier controller
-            $controller = "App\\" . $params[0] . "Controller";
+            $controller = "App\\Controller\\" . $params[0] . "Controller";
             $controller = new $controller(DatabaseController::getPDO());
             return call_user_func_array([$controller, $params[1]], $this->matches);
         } else {

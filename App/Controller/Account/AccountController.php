@@ -33,13 +33,9 @@ class AccountController {
         return $this->render('Account/login');
     }
 
-    public function postLogin(DatabaseController $db)
+    public function postLogin()
     {
-        $user = new Users($db);
-        var_dump($user);
-        if(empty($name) || empty($password)){
-            $errors[] = 'tous les champs ne sont pas rempli';
-        }
+
 
     }
 
