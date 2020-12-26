@@ -17,6 +17,7 @@ class Users {
     private $lastConnection;
     private $deleteAccount;
     private $db;
+    private $table = 'users';
    
     public function __construct(PDO $db){
         $this->db = $db;
@@ -64,5 +65,10 @@ class Users {
 
     public function deleteAccount(){
         return $this->$deleteAccount;
+    }
+
+    public function getByUsername(string $username): Users
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
     }
 }

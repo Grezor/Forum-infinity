@@ -12,3 +12,7 @@ $user->postRegister();
     <input type="password" name="password" id="password">
     <button type="submit" class="btn btn-primary">se connecter</button>
 </form>
+
+<?php foreach ($this->$db->query('SELECT * FROM users') as $post): ?>
+    <?= $post->username; ?>
+<?php endforeach ?>

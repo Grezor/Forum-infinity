@@ -1,12 +1,10 @@
 <?php
-
-namespace App\Account;
+namespace App\Controller\Account;
 
 use App\Render\RedirectTrait;
 use App\Render\PhpRenderTrait;
-use App\Database\DatabaseController;
-use App\model\users;
-
+use App\Controller\Database\DatabaseController;
+use App\model\Users;
 
 class AccountController {
 
@@ -27,10 +25,7 @@ class AccountController {
 
     public function postRegister()
     {
-        $user = new Users($this->db);
-        if (empty($this->username) || empty($this->password)) {
-            $errors[] = 'Tous les champs doivent être remplis';
-        }
+       
     }
 
     public function login()
@@ -38,8 +33,13 @@ class AccountController {
         return $this->render('Account/login');
     }
 
-    public function postLogin()
+    public function postLogin(DatabaseController $db)
     {
+        $user = new Users($db);
+        var_dump($user);
+        if(empty($name) || empty($password)){
+            $errors[] = 'tous les champs ne sont pas rempli';
+        }
 
     }
 
@@ -50,6 +50,7 @@ class AccountController {
 
     public function logout()
     {
-        return $this->render('Account/login');
+
     }
+    
 }

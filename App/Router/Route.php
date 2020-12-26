@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Router;
-use App\Database\DatabaseController;
+use App\Controller\Database\DatabaseController;
 
 class Route {
 
@@ -70,7 +70,7 @@ class Route {
         if (is_string($this->callable)) {
             // prend les parametres
             $params = explode('@', $this->callable);
-            // il va chercher dans le controller
+            // il va chercher dans le dossier controller
             $controller = "App\\" . $params[0] . "Controller";
             $controller = new $controller(DatabaseController::getPDO());
             return call_user_func_array([$controller, $params[1]], $this->matches);

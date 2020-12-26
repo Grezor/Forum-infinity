@@ -1,5 +1,5 @@
 <?php 
-namespace App\Database;
+namespace App\Controller\Database;
 use PDO;
 
 class DatabaseController extends PDO {
@@ -22,4 +22,6 @@ class DatabaseController extends PDO {
     {
         return self::$pdo ??= new DatabaseController('forum2020poo', 'localhost', 'root', '');
     }
+
+
 }

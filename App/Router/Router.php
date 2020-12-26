@@ -9,15 +9,16 @@ class Router {
     private $namedRoutes = [];
 
     /**
-     * 
+     * Constructeur
      * @param [type] $url
      */
     public function __construct($url)
     {
         $this->url = $url;
     }
+    
     /**
-     * GET
+     * Methode GET pour le router
      * @param [type] $path
      * @param [type] $callable
      * @param [type] $name

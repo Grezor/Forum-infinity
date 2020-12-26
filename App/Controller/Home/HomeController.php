@@ -1,5 +1,5 @@
 <?php
-namespace App\Home;
+namespace App\Controller\Home;
 
 use App\Render\PhpRenderTrait;
 
