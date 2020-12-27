@@ -19,56 +19,64 @@ class Users {
     private $db;
     private $table = 'users';
    
-    public function __construct(PDO $db){
-        $this->db = $db;
-    }
 
-    public function id()
+    public function getId()
     {
-        return $this->$id;
+        return $this->id;
     }
 
-    public function username()
+    public function getName()
     {
-        return $this->$username;
+        return $this->name;
     }
 
-    public function email()
+    public function getUsername()
     {
-        return $this->$email;
+        return $this->username;
     }
 
-    public function password()
+    public function getEmail()
     {
-        return $this->$password;
+        return $this->email;
     }
 
-    public function role(){
-        return $this->$role;
-    }
-
-    public function avatar(){
-        return $this->$avatar;
-    }
-
-    public function description(){
-        return $this->$description;
-    }
-
-    public function createdAt(){
-        return $this->$createdAt;
-    }
-
-    public function lastConnection(){
-        return $this->$lastConnection;
-    }
-
-    public function deleteAccount(){
-        return $this->$deleteAccount;
-    }
-
-    public function getByUsername(string $username): Users
+    public function getPassword()
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
+        return $this->password;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getLastConnection()
+    {
+        return $this->lastConnection;
+    }
+
+    public function getDeleteAccount()
+    {
+        return $this->deleteAccount;
+    }
+
+    public function getDb()
+    {
+        return $this->db;
     }
 }

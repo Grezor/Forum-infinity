@@ -15,4 +15,34 @@ class Categories {
     {
         
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
 }

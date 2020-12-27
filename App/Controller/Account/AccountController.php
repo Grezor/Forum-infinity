@@ -35,8 +35,12 @@ class AccountController {
 
     public function postLogin()
     {
-
-
+        $user = $_POST['username'];
+        $pass = $_POST['password'];
+        var_dump($user, $pass);
+        if (empty($user) || empty($pass)) {
+            return $errors[] = 'Tous les champs doivent être remplis';
+        }
     }
 
     public function checkMail()

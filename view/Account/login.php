@@ -1,10 +1,11 @@
 <?php
-use App\Database\DatabaseController;
-use App\Account\AccountController;
+use App\Controller\Account\AccountController;
+use App\Controller\Database\DatabaseController;
 
 $user = new AccountController(DatabaseController::getPDO());
 $user->postRegister();
 ?>
+
 <form action="/login" method="POST">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" id="username">
@@ -12,7 +13,3 @@ $user->postRegister();
     <input type="password" name="password" id="password">
     <button type="submit" class="btn btn-primary">se connecter</button>
 </form>
-
-<?php foreach ($this->$db->query('SELECT * FROM users') as $post): ?>
-    <?= $post->username; ?>
-<?php endforeach ?>

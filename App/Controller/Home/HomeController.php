@@ -15,6 +15,6 @@ class HomeController
     
     public function show()
     {
-        $this->render('Home/show', ['username' => 'Jean'], 'front');
+        $this->render('Home/show', ['username' => 'Test'], 'front');
     }
 }
