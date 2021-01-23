@@ -9,7 +9,11 @@ class Route {
     private $callable;
     private $matches = [];
     private $params = [];
-
+    private $redirections = [
+        '301' => 'Moved Permanently',
+        '302' => 'Moved Temporarily',
+        '303' => 'See Other'
+    ];
     /**
      * Constructeur
      * @param [type] $path
@@ -91,5 +95,19 @@ class Route {
             $path = str_replace(":$key", $value, $path);
         }
         return $path;
+    }
+
+    public function redirectTo($url, $code = 301)
+    {
+        // On récupère nos code de redirections possible
+        global $redirections;
+
+        if (!in_array($code, $redirections)) {
+            $code = 301;
+        }
+
+        header("HTTP/1.1 {$code} {$redirections[$code]}", false, $code);
+        header("location: {$url}");
+        exit;
     }
 }

@@ -2,7 +2,7 @@
 // require 'vendor/autoload.php';
 require 'App/Autoloader.php';
 App\Autoloader::register();
-
+session_start();
 $url = $_SERVER['REQUEST_URI'] ?? $_GET['url'] ?? '';
 $router = new App\Router\Router($url);
 

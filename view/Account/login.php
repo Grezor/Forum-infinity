@@ -1,11 +1,3 @@
-<?php
-use App\Controller\Account\AccountController;
-use App\Controller\Database\DatabaseController;
-
-$user = new AccountController(DatabaseController::getPDO());
-$user->postRegister();
-?>
-
 <form action="/login" method="POST">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" id="username">
